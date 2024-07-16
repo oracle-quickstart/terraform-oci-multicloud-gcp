@@ -2,7 +2,7 @@ terraform {
   required_providers {
     oci = {
       source = "hashicorp/oci"
-      version = ">= 5.0.0"# -- for local module run
+      version = ">= 5.0.0"
     }
   }
 }
@@ -55,5 +55,4 @@ resource "oci_identity_domains_setting" "domain_setting" {
   locale                                = data.oci_identity_domains_setting.domain_setting.locale
   service_admin_cannot_list_other_users = data.oci_identity_domains_setting.domain_setting.service_admin_cannot_list_other_users
   timezone                              = data.oci_identity_domains_setting.domain_setting.timezone
-
 }

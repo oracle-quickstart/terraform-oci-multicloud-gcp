@@ -19,8 +19,3 @@ variable "domain_display_name" {
   type        = string
   default     = "Default"
 }
-
-variable "confidential_app_name" {
-  type    = string
-  default = "GcpEntra"
-}

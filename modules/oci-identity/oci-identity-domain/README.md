@@ -1,4 +1,4 @@
-# Terraform Template to setup SSO Federation between OCI & Azure
+# Terraform Template to setup SSO Federation between OCI & GCP
 
 Terraform module to fetch service provider metadata url and enable global access i.e. without authorization. This module performs the first step of the SSO configuration between OCI and Google.
 
@@ -16,16 +16,16 @@ Terraform module to fetch service provider metadata url and enable global access
 | `compartment_ocid`      |                    Tenancy OCID                     |   Yes    |                        | "ocid1.tenancy.oc1..xxxxxxxxxxxxx" |
 | `region`                |                OCI region Identifier                |   Yes    |                        |                     "us-ashburn-1" |
 | `domain_display_name`   |              OCI Identify Domain Name               |    No    |              "Default" |                                    |
-| `confidential_app_name` | OCI confidential application of identity federation |    No    | "GcpIdentityProvider"  |                                    |
 
 ## Output Values
 
-| VARIABLE                  |             DESCRIPTION              |                             SAMPLE VALUE                              |
-|:--------------------------|:------------------------------------:|:---------------------------------------------------------------------:|
-| `domain_url`              |         Identity domains url         |          https://idcs-xxxxxxxxx.identity.pint.oracle.com:443          |
-| `domain_metadata_xml_url` |  Identity domains metadata xml url   | https://idcs-xxxxxxxxx.identity.pint.oc9qadev.com:443/fed/v1/metadata |
-| `provider_id`             |       Provider ID / Entity ID        |       https://idcs-xxxxxxxxx.identity.pint.oc9qadev.com:443/fed       |
-| `acs_url`                 | ACS (Assertion consumer service) URL |  https://idcs-xxxxxxxxx.identity.pint.oc9qadev.com:443/fed/v1/sp/sso  |
+| VARIABLE                  |              DESCRIPTION              |                             SAMPLE VALUE                              |
+|:--------------------------|:-------------------------------------:|:---------------------------------------------------------------------:|
+| `domain_url`              |         Identity domains url          |          https://idcs-xxxxxxxxx.identity.pint.oracle.com:443          |
+| `domain_metadata_xml_url` |   Identity domains metadata xml url   | https://idcs-xxxxxxxxx.identity.pint.oc9qadev.com:443/fed/v1/metadata |
+| `provider_id`             |        Provider ID / Entity ID        |       https://idcs-xxxxxxxxx.identity.pint.oc9qadev.com:443/fed       |
+| `acs_url`                 | ACS (Assertion consumer service) URL  |  https://idcs-xxxxxxxxx.identity.pint.oc9qadev.com:443/fed/v1/sp/sso  |
+| `next_steps`              | Next steps after domain being enabled |                                                                       |
 
 ### Setting param value
 
