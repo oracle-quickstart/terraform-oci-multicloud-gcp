@@ -1,0 +1,20 @@
+identity_domain_identity_providers_configuration = {
+  identity_providers = {  
+    GCP = {  
+        identity_domain_id                      = "<OCID of Identity Domain>"
+        name                                    = "Google IdP", 
+        description                             = "GCP Identity Provider",
+        enabled                                 = true,
+        idp_metadata_file                       = "GoogleIDPMetadata.xml",
+
+        signature_hash_algorithm                = "SHA-256",
+        user_mapping_method                     = "NameIDToUserAttribute",
+        user_mapping_store_attribute            = "emails.primary",
+        name_id_format                          = "saml-emailaddress",
+
+        jit_user_prov_enabled                   = true,
+        jit_user_prov_attribute_update_enabled  = true,
+        jit_user_prov_create_user_enabled       = true,
+    }
+  }
+}
