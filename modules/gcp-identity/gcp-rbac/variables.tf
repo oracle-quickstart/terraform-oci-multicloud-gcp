@@ -9,8 +9,16 @@ variable "gcp_project" {
   description = "GCP project"
 }
 
+variable "gcp_region" {
+  type = string
+  description = "GCP region"
+}
+
 variable "odbag_built_in_roles" {
-  type        = map(string)
+  type        = map(object({
+    description = string
+    role = optional(string)
+  }))
   default     = {}
   description = "Groups required on GCP"
 }

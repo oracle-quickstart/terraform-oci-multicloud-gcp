@@ -10,15 +10,16 @@ Support module. Creates a set of OCI policies including policy statements.
 
 ## Inputs Variables
 
-| VARIABLE                                |                            DESCRIPTION                             | REQUIRED | DEFAULT_VALUE | SAMPLE VALUE                                         |
-|:----------------------------------------|:------------------------------------------------------------------:|:--------:|--------------:|:-----------------------------------------------------|
-| `config_file_profile`                   |                        OCI CLI profile name                        |   Yes    |               | "ONBOARDING"                                         |
-| `compartment_ocid`                      |                            Tenancy OCID                            |   Yes    |               | "ocid1.tenancy.oc1..xxxxxxxxxxxxx"                   |
-| `region`                                |                       OCI region Identifier                        |   Yes    |               | "us-ashburn-1"                                       |
-| `google_project_number`                 |     Google Project ID related to the current OCI configuration     |    No    |               | "<google_project_number>"                            |
-| `identity_domain_name`                  |                Name of an existing identity domain                 |    No    |     "Default" | "ExistingDomain"                                     |
-| `identity_domain_configuration`         | Identity domain definition to isolate the federation configuration |    No    |               | See [domain module](./oci-identity-domain/README.md) |
-| `identity_domain_groups_configuration`  |                    Additional groups to create                     |    No    |               | See [groups module](./oci-identity-group/README.md)  |
+| VARIABLE                               |                            DESCRIPTION                             | REQUIRED | DEFAULT_VALUE | SAMPLE VALUE                                         |
+|:---------------------------------------|:------------------------------------------------------------------:|:--------:|--------------:|:-----------------------------------------------------|
+| `config_file_profile`                  |                        OCI CLI profile name                        |   Yes    |               | "ONBOARDING"                                         |
+| `tenancy_id`                           |                            Tenancy OCID                            |   Yes    |               | "ocid1.tenancy.oc1..xxxxxxxxxxxxx"                   |
+| `compartment_ocid`                     |                          Compartment OCID                          |   Yes    |               | "ocid1.tenancy.oc1..xxxxxxxxxxxxx"                   |
+| `region`                               |                       OCI region Identifier                        |   Yes    |               | "us-ashburn-1"                                       |
+| `google_project_number`                |     Google Project ID related to the current OCI configuration     |    No    |               | "<google_project_number>"                            |
+| `identity_domain_name`                 |                Name of an existing identity domain                 |    No    |     "Default" | "ExistingDomain"                                     |
+| `identity_domain_configuration`        | Identity domain definition to isolate the federation configuration |    No    |               | See [domain module](./oci-identity-domain/README.md) |
+| `identity_domain_groups_configuration` |                    Additional groups to create                     |    No    |               | See [groups module](./oci-identity-group/README.md)  |
 
 ### Setting param value
 
@@ -66,8 +67,8 @@ To create a new identity domain and recreate the default groups and policies add
 
 ```
 # on terraform.tvars
-# identity_domain_configuration {
-#   name         = "NewDomain"
+# identity_domain_configuration = {
+#   display_name = "NewDomain"
 #   description  = "New domain to isolate groups and policies for federation"
 #   license_type = "Free"
 # }
@@ -78,7 +79,7 @@ terraform apply
 To recreate the default policies and limit the access to only a single Google Cloud project.
 
 ```
-terraform apply -var="gcp_project_numer=<gcp_project_number>"
+terraform apply -var="gcp_project_number=<gcp_project_number>"
 ```
 
 New groups can be created by providing a value for `identity_domain_groups_configuration`

@@ -64,12 +64,12 @@ variable "identity_domain_groups_configuration" {
     default_defined_tags  = optional(map(string))
     default_freeform_tags = optional(map(string))
     groups = map(object({
-      name               = string,
-      description        = optional(string),
-      requestable        = optional(bool),
-      members            = optional(list(string)),
-      defined_tags       = optional(map(string)),
-      freeform_tags      = optional(map(string))
+      name          = string,
+      description   = optional(string),
+      requestable   = optional(bool),
+      members       = optional(list(string)),
+      defined_tags  = optional(map(string)),
+      freeform_tags = optional(map(string))
     }))
   })
   default = null

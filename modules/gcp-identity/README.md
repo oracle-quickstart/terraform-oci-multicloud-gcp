@@ -10,11 +10,12 @@ Setup Roles Based access control for ODB@G service.
 
 
 ## Inputs Variables
-| VARIABLE               |                DESCRIPTION                 | REQUIRED | DEFAULT_VALUE |                                              SAMPLE VALUE |
-|:-----------------------|:------------------------------------------:|:--------:|--------------:|--------------------------------------------------------:|
-| `gcp_org_id`           |            GCP Organization ID             |   YES    |            "" | |
-| `gcp_project`          |              GCP Project ID.               |   YES    |            "" |  |
-| `group_prefix`         | Custom role prefix for all created groups. |    NO    |            {} |  |
+| VARIABLE               |                DESCRIPTION                 | REQUIRED | DEFAULT_VALUE |       SAMPLE VALUE |
+|:-----------------------|:------------------------------------------:|:--------:|--------------:|-------------------:|
+| `gcp_org_id`           |            GCP Organization ID             |   YES    |            "" |                    |
+| `gcp_project`          |              GCP Project ID.               |   YES    |            "" |                    |
+| `gcp_region`           |   GCP Region.                              |    NO    |            "" |       "us-east-1"  |
+| `group_prefix`         | Custom role prefix for all created groups. |    NO    |            {} |                    |
 | `initial_group_config` |   Ownership of the newly created groups.   |    NO    |              WITH_INITIAL_OWNER | WITH_INITIAL_OWNER |
 
 

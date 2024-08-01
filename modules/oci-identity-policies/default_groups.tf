@@ -61,5 +61,5 @@ locals {
   domain_groups = var.identity_domain_configuration == null ? {} : { for key, group in local.groups : key => {
     name : group.name
     description : group.description
-  }}
+  } }
 }

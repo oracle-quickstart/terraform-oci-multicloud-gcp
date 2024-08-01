@@ -9,6 +9,11 @@ variable "region" {
   type        = string
 }
 
+variable "tenancy_ocid" {
+  description = "The tenancy OCID."
+  type        = string
+}
+
 variable "compartment_ocid" {
   description = "for root compartment pass tenancy_ocid , else pass compartment_ocid"
   type        = string

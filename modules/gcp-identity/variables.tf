@@ -9,6 +9,11 @@ variable "gcp_project" {
   description = "GCP project"
 }
 
+variable "gcp_region" {
+  type = string
+  description = "GCP region"
+}
+
 variable "group_prefix" {
   type        = string
   default     = ""

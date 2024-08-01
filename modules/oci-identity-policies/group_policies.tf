@@ -13,7 +13,8 @@ locals {
 
   oci_console_policy = {
     "MulticloudLink_ODBG_Custom_ConsoleAccess" : {
-      name : "MulticloudLink_ODBG_Custom_ConsoleAccess",
+      name : "MulticloudLink_ODBG_Custom_ConsoleAccess"
+      description: "MulticloudLink_ODBG_Custom_ConsoleAccess"
       statements : flatten([
         for group in keys(local.groups) : [
           for statement in local.oci_console_policy_statements : {
@@ -53,6 +54,7 @@ locals {
 module "identity_policies" {
   source = "./oci-identity-policy"
 
+  tenancy_ocid        = var.tenancy_id
   compartment_ocid    = var.compartment_ocid
   config_file_profile = var.config_file_profile
   region              = var.region

@@ -10,12 +10,13 @@ Setup Roles Based access control for ODB@G service.
 
 
 ## Inputs Variables
-| VARIABLE               |                           DESCRIPTION                           | REQUIRED | DEFAULT_VALUE |                                              SAMPLE VALUE |
-|:-----------------------|:---------------------------------------------------------------:|:--------:|--------------:|--------------------------------------------------------:|
-| `gcp_org_id`           |                      GCP Organization ID                        |   YES    |            "" | |
-| `gcp_project`          |                         GCP Project ID.                         |   YES    |            "" |  |
-| `odbag_built_in_roles` | Map of Role ID to Role Description for the roles to be created. |    NO    |            {} |  |
-| `initial_group_config` |             Ownership of the newly created groups.              |    NO    |              WITH_INITIAL_OWNER | WITH_INITIAL_OWNER |
+| VARIABLE               |                           DESCRIPTION                           | REQUIRED | DEFAULT_VALUE | SAMPLE VALUE                                                                                                                            |
+|:-----------------------|:---------------------------------------------------------------:|:--------:|--------------:|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `gcp_org_id`           |                       GCP Organization ID                       |   YES    |            "" |                                                                                                                                         |
+| `gcp_project`          |                         GCP Project ID.                         |   YES    |            "" |                                                                                                                                         |
+| `gcp_region`           |                           GCP Region.                           |    NO    |            "" | "us-east-1"                                                                                                                             |
+| `odbag_built_in_roles` | Map of Role ID to Role Description for the roles to be created. |    NO    |            {} | <pre>{<br/>  "admin" : { <br/>    description : "Group description"<br/>    role        : "default_role@domain.com"<br/>  }<br/>}</pre> |
+| `initial_group_config` |             Ownership of the newly created groups.              |    NO    |              WITH_INITIAL_OWNER | WITH_INITIAL_OWNER                                                                                                                      |
 
 
 # Setup Roles based access
