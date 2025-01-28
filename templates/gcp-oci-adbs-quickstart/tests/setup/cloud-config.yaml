@@ -1,0 +1,27 @@
+#cloud-config
+package_update: true
+packages:
+ - unzip
+ - wget
+
+runcmd:
+# Download Oracle Instance Client
+ - wget https://download.oracle.com/otn_software/linux/instantclient/2360000/instantclient-basic-linux.x64-23.6.0.24.10.zip
+ - wget https://download.oracle.com/otn_software/linux/instantclient/2360000/instantclient-sqlplus-linux.x64-23.6.0.24.10.zip
+
+# Unzip packages
+ - mkdir -p /opt/oracle
+ - unzip -d /opt/oracle -o instantclient-basic-linux.x64-23.6.0.24.10.zip
+ - unzip -d /opt/oracle -o instantclient-sqlplus-linux.x64-23.6.0.24.10.zip
+
+# Setup path
+ - export LD_LIBRARY_PATH=/opt/oracle/instantclient_23_6:$LD_LIBRARY_PATH
+ - export PATH=$LD_LIBRARY_PATH:$PATH
+ - source ~/.bashrc
+ 
+#  Check version
+ - echo "$(sqlplus -V 2&1)"
+ - echo "SQL*Plus installation completed."
+
+# Clean up
+ - rm instantclient-basic-linux.x64-23.6.0.24.10.zip instantclient-sqlplus-linux.x64-23.6.0.24.10.zip

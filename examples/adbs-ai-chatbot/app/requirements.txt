@@ -1,0 +1,5 @@
+streamlit==0.86.0
+oracledb==22.3.0
+sentence-transformers==2.2.0
+transformers==4.17.0
+google-cloud-aiplatform==1.13.0
