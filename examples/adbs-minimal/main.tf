@@ -8,3 +8,8 @@ module "gcp-oci-adbs-quickstart" {
   customer_email = "your_email@here"
   admin_password = "DoNotKeepThis$1234"
 }
+
+output "adbs_ocid" {
+  description = "OCID of this Autonomous Database @ Google Cloud"
+  value = module.gcp-oci-adbs-quickstart.oci_adbs_ocid
+}
