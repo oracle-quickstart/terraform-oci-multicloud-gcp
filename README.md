@@ -21,7 +21,6 @@ To use the Terraform modules and templates in your environment, you must install
 ## Templates 
 These module automates the provisioning of components for running Oracle Database@Google. Each template can run independently and default input values are configured which can be overridden per customer's preferences.
 - [Quickstart for Autonomous Database](./templates/gcp-oci-adbs-quickstart/README.md)
-    - [Example with minimal inputs](./docs/tutorials/adbs-terraform/README.md)
 
 ## Tutorial
 - [Provision AI Chatbot with Autonomous Database @ Google Cloud](./docs/tutorials/adbs-ai-chatbot/README.md)
