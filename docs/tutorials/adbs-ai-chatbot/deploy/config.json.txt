@@ -1,0 +1,14 @@
+{
+  "project_id": "",
+  "region": "",
+  "vpc_name": "",
+  "public_subnet": "",
+  "private_subnet": "",
+  "ingress_rule": "",
+  "egress_rule": "",
+  "bastion_name": "",
+  "admin_password": "",
+  "web_server_name": "",
+  "database_name": "",
+  "database_display_name": ""
+}
