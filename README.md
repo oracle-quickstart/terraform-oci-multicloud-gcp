@@ -20,12 +20,8 @@ To use the Terraform modules and templates in your environment, you must install
 
 ## Templates 
 These module automates the provisioning of components for running Oracle Database@Google. Each template can run independently and default input values are configured which can be overridden per customer's preferences.
-
-### Autonomous Database
-- [templates/gcp-oci-adbs-quickstart](./templates/gcp-oci-adbs-quickstart/README.md) Quickstart OracleDB@Google Cloud (Autonomous Database) with OCI LZ modules
-
-## Example
-- [Provision Autonomous Database @ Google Cloud using Quickstart template with minimal inputs](./docs/tutorials/adbs-terraform/README.md)
+- [Quickstart for Autonomous Database](./templates/gcp-oci-adbs-quickstart/README.md)
+    - [Example with minimal inputs](./docs/tutorials/adbs-terraform/README.md)
 
 ## Tutorial
 - [Provision AI Chatbot with Autonomous Database @ Google Cloud](./docs/tutorials/adbs-ai-chatbot/README.md)
@@ -43,7 +39,7 @@ These module automates the provisioning of components for running Oracle Databas
 
 ## Help
 
-Open an issue in this repository.
+Open an [issue](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/issues) in this repository.
 
 ## Contributing
 
