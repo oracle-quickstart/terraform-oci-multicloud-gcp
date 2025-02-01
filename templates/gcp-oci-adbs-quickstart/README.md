@@ -1,5 +1,8 @@
 # gcp-oci-adbs-quickstart
-This is a quick-start template for provision Autonomous Database @ Google Cloud with a VPC in a given existing project.
+This is a quick-start template for provision an Autonomous Database @ Google Cloud with a VPC in a given existing project.
+
+## Architecture
+![gcp-oci-adbs-quickstart](../../images/gcp-oci-adbs-quickstart.png)
 
 ## Example
 ```tf
