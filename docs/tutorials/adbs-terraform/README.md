@@ -3,7 +3,7 @@
 This tutorial will guide you through provisioning Autonomous Database @ Google Cloud using OCI Multicloud Landing Zone's quickstart template.
 You will learn how to deploy the following architecture in pre-configured default settings with minimal mandatory inputs.
 
-![gcp-oci-adbs-quickstart](../../images/gcp-oci-adbs-quickstart.png)
+![gcp-oci-adbs-quickstart](../../../images/gcp-oci-adbs-quickstart.png)
 
 ## Prerequisites and setup
 
