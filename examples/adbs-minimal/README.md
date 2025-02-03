@@ -3,8 +3,7 @@
 This example provision a Autonomous Database @ Google Cloud by using the [gcp-oci-adbs-quickstart](#module\_gcp-oci-adbs-quickstart) template with minimal input.
 
 ## Example
-[![Open in Google Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Foracle-quickstart%2Fterraform-oci-multicloud-gcp.git&cloudshell_image=gcr.io%2Fcloudshell-images%2Fcloudshell%3Alatest&cloudshell_print=.%2Fmotd&cloudshell_tutorial=.%2Fexamples%2Fadbs-minimal%2FREADME.md
-&cloudshell_working_dir=.%2Fexamples%2Fadbs-minimal&open_in_editor=main.tf&cloudshell_git_branc=adbs-ai)
+[![Open in Google Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://console.cloud.google.com/cloudshell/open?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Foracle-quickstart%2Fterraform-oci-multicloud-gcp.git&cloudshell_image=gcr.io%2Fcloudshell-images%2Fcloudshell%3Alatest&cloudshell_print=.%2Fmotd&cloudshell_tutorial=.%2Fexamples%2Fadbs-minimal%2FREADME.md&cloudshell_working_dir=.%2Fexamples%2Fadbs-minimal&open_in_editor=main.tf&cloudshell_git_branc=adbs-ai)
 
 ```tf
 module "gcp-oci-adbs-quickstart" {
