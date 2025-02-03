@@ -15,38 +15,38 @@ This tutorial has the following prerequisites:
 
 ### Verify Google Cloud CLI installation and version
 
-```sh
+```bash
 gcloud -v
 ```
 
 ### Verify Terraform installation and version
 
-```sh
+```bash
 terraform -v
 ```
 
 ### Authenicate to Google Cloud
  
-```sh
+```bash
 gcloud auth application-default login
 ```
 
-```sh
+```bash
 gcloud auth list 
 ```
 
 ### Check access to the project
 
-```sh
+```bash
 export GCP_PROJECT=example
 gcloud config set project $GCP_PROJECT
 ```
 
-```sh
+```bash
 gcloud config get-value project
 ```
 
-## Setup project and mandatory parameters
+## Step 1: Setup project and mandatory parameters
 
 | Name | Description | Example | 
 |------|-------------|:--------:|
@@ -57,21 +57,24 @@ gcloud config get-value project
 | <a name="input_customer_email"></a> [customer\_email](#input\_customer\_email) | The email address used by Oracle to send notifications regarding databases and infrastructure. | `your_email@example.com` |
 | <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The password for the default ADMIN user | "Your0wnV@lue" |
 
-## Initialize Terraform 
-```sh
+## Step 2: Provision with Terraform
+
+### Initialize Terraform 
+```bash
 terraform init
 ```
 
-## Review plan and provision
-```sh
+### Review plan and provision
+```bash
 terraform plan
 ```
 
-```sh
+```bash
 terraform apply
 ```
 
-## Clean up
-```sh
+## Step 3: Clean up
+
+```bash
 terraform destroy
 ```
