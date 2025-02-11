@@ -1,14 +1,11 @@
-# Deploying Oracle Database on Google Cloud Platform (GCP)
+# Subscribe and deploy Oracle Database 23ai on Google Cloud
 
-One of the key benefits of using GCP is its ability to support a wide range of databases, including Oracle. In this blog post, we'll focus on deploying an Autonomous Database on Google Cloud Platform (GCP). An Autonomous Database is a self-managing database that automatically handles maintenance tasks, freeing up your time to focus on higher-level tasks.
+# Table of contents
 
- We will cover the following topics:
-
-- Creating a virtual private cloud (VPC) network
-- Creating subnets and firewall rules
-- Creating a bastion host or a Windows VM for easy APEX development
-- Deploying an Oracle Autonomous Database
-- Configuring instaclient and sqlcl for Oracle Autonomous Database
+1. [Subscribe to Oracle Autonomous Database on GCP](#subscribe)  
+2. [Deploy Oracle Autonomous Database on GCP - terraform](#terraform)  
+3. [Deploy Oracle Autonomous Database on GCP - bash](#bash)  
+4. [Connect to Oracle Database@Google Cloud](#connect)
 
 ## Prerequisites
 
@@ -19,11 +16,11 @@ Before we begin, make sure you have the following prerequisites:
 - The gcloud command-line tool installed and configured on your system
 - Oracle Autonomous Database at Google Cloud Platform(GCP) marketplace image
 
-
-
 ## How to
 
-### Subscribe to Oracle Autonomous Database on GCP
+<div id='subscribe'>  
+
+### Subscribe to Oracle Autonomous Database on GCP  
 
 The first step in deploying an Oracle Autonomous Database on GCP is to subscribe to Oracle Database@Google Cloud image.
 
@@ -44,7 +41,15 @@ The first step in deploying an Oracle Autonomous Database on GCP is to subscribe
 
 Once your account is approved you can deploy Oracle Autonomous Database on GCP.  
 
-### Deploy Oracle Autonomous Database on GCP
+<div id='terraform'>  
+
+### Deploy Oracle Autonomous Database on GCP - terraform
+
+lorem ipsum
+
+<<a name=='bash'>  
+
+### Deploy Oracle Autonomous Database on GCP - bash
 
 To automate the deployment process, we've created a Bash script that guides you through each step. The script is divided into several smaller scripts stored in the deploy/scripts directory, making it easier to manage and maintain individual components.
 
@@ -264,6 +269,8 @@ Here is breakdown of the command
 - `--properties-license-type`: specify the license type for your Oracle Autonomous Database  
   
 - `--properties-db-workload`: specify the workload type for your database (in this example, we are using OLTP)
+
+<div id='connect'>  
 
 ### Connect to Oracle Database@Google Cloud
 
