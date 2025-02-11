@@ -23,7 +23,7 @@ These module automates the provisioning of components for running Oracle Databas
 - [Quickstart for Autonomous Database](./templates/gcp-oci-adbs-quickstart/README.md)
 
 ## Tutorial
-- [Provision AI Chatbot with Autonomous Database @ Google Cloud](./docs/tutorials/adbs-ai-chatbot/README.md)
+- [Provision RAG Chatbot with Autonomous Database @ Google Cloud](./docs/tutorials/adbs-rag-chatbot/README.md)
 
 ## Further Documentation
 
