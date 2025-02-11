@@ -45,9 +45,9 @@ Once your account is approved you can deploy Oracle Autonomous Database on GCP.
 
 ### Deploy Oracle Autonomous Database on GCP - terraform
 
-lorem ipsum
+![You can use this Terraform Script](examples/adbs-minimal/README.md)  
 
-<<a name=='bash'>  
+<div id='bash'>  
 
 ### Deploy Oracle Autonomous Database on GCP - bash
 
