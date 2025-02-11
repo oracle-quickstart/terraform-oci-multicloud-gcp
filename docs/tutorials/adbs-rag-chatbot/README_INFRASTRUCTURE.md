@@ -443,4 +443,4 @@ GROUP BY
 
 In conclusion, deploying an Autonomous Database on GCP involves several steps, including creating a VPC, subnets, firewall rules, a bastion host or Windows VM, and configuring instaclient and sqlcl. By automating these steps using a Bash script, we can streamline the process and reduce the risk of human error. The script provides a flexible and modular approach to deploying an Autonomous Database on GCP, allowing us to customize and extend it as needed.
 
-You may proceed to the next step [AI Chatbot engine with Oracle Database 23ai on Google Cloud](README_AICHATBOT.md)
+You may proceed to the next step [AI Chatbot engine with Oracle Database 23ai on Google Cloud](README_RAG.md)

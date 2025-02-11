@@ -1,4 +1,4 @@
-# AI Chatbot engine with Oracle Database 23ai on Google Cloud
+# RAG Chatbot engine with Oracle Database 23ai on Google Cloud
 
 In this part of the blog we will teach you how you can implement a **RAG (Retrieval Augmented Generation)** chatbot using vector similarity search and Generative AI / LLMs.
 

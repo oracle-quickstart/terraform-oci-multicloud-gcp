@@ -26,5 +26,5 @@ Before we begin, make sure you have the following prerequisites:
 Content of this lab is split into 3 sections:
 
 1. [Subscribe and deploy Oracle Database 23ai on Google Cloud](README_INFRASTRUCTURE.md)  
-2. [AI Chatbot engine with Oracle Database 23ai on Google Cloud](README_AICHATBOT.md)  
+2. [RAG Chatbot engine with Oracle Database 23ai on Google Cloud](README_RAG.md)  
 3. [Add Streamlit Frontend App for Oracle Database 23ai on Google Cloud](README_FRONTEND.md)
