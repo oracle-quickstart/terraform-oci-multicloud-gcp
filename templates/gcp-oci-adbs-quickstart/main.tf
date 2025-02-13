@@ -24,11 +24,9 @@ resource "random_password" "admin_password" {
 }
 
 # VPC
-module "network" {
-  source       = "terraform-google-modules/network/google//modules/vpc"
-  version      = "10.0.0"
-  network_name = local.network_name
-  project_id   = var.project
+resource "google_compute_network" "vpc_network" {
+  name = local.network_name
+  project = var.project
 }
 
 # Secret Manager
