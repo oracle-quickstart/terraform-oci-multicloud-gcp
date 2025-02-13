@@ -24,7 +24,14 @@ resource "random_password" "admin_password" {
 }
 
 # VPC
-resource "google_compute_network" "vpc_network" {
+# module "network" {
+#   source       = "terraform-google-modules/network/google//modules/vpc"
+#   version      = "10.0.0"
+#   network_name = local.network_name
+#   project_id   = var.project
+# }
+
+resource "google_compute_network" "this" {
   name = local.network_name
   project = var.project
 }
@@ -42,7 +49,7 @@ resource "google_compute_network" "vpc_network" {
 # Oracle Autonomous Database
 module "google_ora_adbs" {
   source = "../../modules/gcp-ora-adbs"
-  depends_on = [ module.network ]
+  depends_on = [ google_compute_network.this ]
 
   # Required
   location               = var.location
