@@ -134,10 +134,7 @@ You've successfully provision an Autonomous Database of *Oracle Database@Google 
 
 ### What's next:
 
-- **Continue with RAG based Chatbot engine**: Start next tutorial to build an RAG based Chatbot engine base on the Autonomous Database you've just provisioned.
-    ```bash
-    cloudshell launch-tutorial -d test.md 
-    ```
+- **Continue with [RAG Chatbot engine](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/docs/tutorials/adbs-rag-chatbot/README_RAG.md)**: Use the Autonomous Database you've just provisioned as vector database for building a RAG Chatbot engine.
 - **Don't forget to clean up**: Run the following command to cleanup the environment when you're done with all the related tutorials.
     ```bash
     terraform destroy
