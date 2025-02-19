@@ -1,52 +1,13 @@
-# Deploying Oracle Database on Google Cloud Platform (GCP)
-
-One of the key benefits of using GCP is its ability to support a wide range of databases, including Oracle. In this blog post, we'll focus on deploying an Autonomous Database on Google Cloud Platform (GCP). An Autonomous Database is a self-managing database that automatically handles maintenance tasks, freeing up your time to focus on higher-level tasks.
-
- We will cover the following topics:
-
-- Creating a virtual private cloud (VPC) network
-- Creating subnets and firewall rules
-- Creating a bastion host or a Windows VM for easy APEX development
-- Deploying an Oracle Autonomous Database
-- Configuring instaclient and sqlcl for Oracle Autonomous Database
-
-## Prerequisites
-
-Before we begin, make sure you have the following prerequisites:
-
-- A GCP account with the necessary permissions to create resources
-- A Bash shell installed on your system
-- The gcloud command-line tool installed and configured on your system
-- Oracle Autonomous Database at Google Cloud Platform(GCP) marketplace image
-
-
-
-## How to
-
-### Subscribe to Oracle Autonomous Database on GCP
-
-The first step in deploying an Oracle Autonomous Database on GCP is to subscribe to Oracle Database@Google Cloud image.
-
-- Click search bar and type  `marketplace`
-![Marketplace](images/marketplace.png) 
-
-- In search bar type `oracle`
-![Oracle Database at Google Cloud](images/oracledatabaseatgooglecloud.png)  
-
-- Click on `subscribe`
-![Oracle Database at Google Cloud](images/subscribe.png)  
-
-- Once Image is activated click on `Manage on OCI`
-![Oracle Database at Google Cloud](images/manageonoci.png)  
-
-- Connect Marketplace offer with an Oracle Account and click on `Create Account`
-![Oracle Database at Google Cloud](images/createociaccount.png)  
-
-Once your account is approved you can deploy Oracle Autonomous Database on GCP.  
-
-### Deploy Oracle Autonomous Database on GCP
+# Deploy Oracle Autonomous Database on GCP - bash
 
 To automate the deployment process, we've created a Bash script that guides you through each step. The script is divided into several smaller scripts stored in the deploy/scripts directory, making it easier to manage and maintain individual components.
+
+**TLDR**: With this guide, you'll learn how to:
+
+Deploy an Autonomous Database on GCP using a Bash script
+Automate the deployment process with minimal user interaction
+Create a VPC, subnets, firewall rules, and instances using the script
+Configure Oracle Autonomous Database on GCP with ease
 
 Here's an overview of the automation script:
 
@@ -81,11 +42,11 @@ for ((i=0; i<${#steps[@]}; i+=2)); do
 done
 ```
 
-### Step-by-Step Guide
+## Step-by-Step Guide
 
 Let's walk through each step in detail:
 
-#### Load Configuration
+### Load Configuration
 
 The first step loads the configuration from a JSON file using the `config_loader.sh` script.
 
@@ -108,7 +69,8 @@ The first step loads the configuration from a JSON file using the `config_loader
 }
 ```
 
-#### Ask for Database Name
+### Ask for Database Name
+
 The next step asks the user for the database name using the `ask_for_database_name.sh` script.
 
   `./scripts/ask_for_database_name.sh`
@@ -125,7 +87,7 @@ done
 DATABASE_DISPLAY_NAME=$DATABASE_NAME
 ```
 
-#### Create a VPC Network
+### Create a VPC Network
 
 This step creates a VPC using the `create_vpc.sh` script.
 
@@ -144,7 +106,7 @@ log_message "VPC created successfully."
 
 Next, we need to create subnets and firewall rules for our VPC network.
 
-#### Create Subnets
+### Create Subnets
 
 This step creates subnets using the `create_subnets.sh` script.
 
@@ -166,7 +128,7 @@ echo "Public Subnet ID: $PUBLIC_SUBNET_ID" >> $LOG_FILE
 log_message "Subnets created successfully."
 ```
 
-#### Create Firewall Rules
+### Create Firewall Rules
 
 The fifth step creates firewall rules using the create_firewall_rules.sh script.
 
@@ -193,11 +155,11 @@ log_message "Firewall rules created successfully."
 
   The second firewall rule, allow-vm-egress, is an egress rule that allows specific types of traffic from instances in the VPC to reach the internet. This rule also allows SSH, HTTP, HTTPS, Autonomous DB, and RDP access. The direction parameter is set to EGRESS, which means that the rule allows traffic leaving the VPC.
 
-### Create a Ubuntu and/or Windows VM
+## Create a Ubuntu and/or Windows VM
 
 Next, I created a webserver host and/or Windows VM.  
 
-#### Create Windows VM
+### Create Windows VM
 
 The sixth step creates a Windows VM using the `create_windows_vm.sh` script.
 
@@ -213,7 +175,7 @@ echo "Windows VM ID: $WINDOWS_VM_ID" >> $LOG_FILE
 log_message "Windows VM created successfully."
 ```
 
-#### Create Web Server VM
+### Create Web Server VM
 
 The seventh step creates an Ubuntu web server using the `create_ubuntu_web_server.sh` script.
 
@@ -264,176 +226,3 @@ Here is breakdown of the command
 - `--properties-license-type`: specify the license type for your Oracle Autonomous Database  
   
 - `--properties-db-workload`: specify the workload type for your database (in this example, we are using OLTP)
-
-### Connect to Oracle Database@Google Cloud
-
-#### Connect to Oracle Database@Google Cloud APEX UI via Windows VM
-
-- In `Compute Engine` section under `VM instances` you can access Windows VM.
-
-![Oracle Database at Google Cloud](images/computeengine.png)  
-
-- Click on `RDP` to download remote desktop file.  
-
-- Open remote desktop file and login with your windows password.  
-
-![Oracle Database at Google Cloud](images/windowsvm.png)  
-
-- Once logged in open browser on your remote `Windows VM` and navigate to Private endpoint URL
-
-![Oracle Database at Google Cloud](images/privateendpointurl.png)  
-
-Then choose Oracle APEX
-
-![Oracle Database at Google Cloud](images/ords.png)  
-
-- Login with your admin password and create new `workspace`.
-
-![Oracle Database at Google Cloud](images/adminapex.png)  
-
-- Login to your `workspace`.
-
-![Oracle Database at Google Cloud](images/loginworkspace.png)  
-
-![Oracle Database at Google Cloud](images/apexui.png)  
-
-#### Connect to Oracle Database@Google Cloud via sqlcl running
-
-- SSH to your VM
-
-- Download and install [Oracle Instant Client](https://www.oracle.com/uk/database/technologies/instant-client/linux-x86-64-downloads.html)
-
-```bash
-wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basic-linux.x64-23.4.0.24.05.zip
-sudo apt install zip
-unzip instantclient-basic-linux.x64-23.4.0.24.05.zip
-```
-
-- Set the following environment variables to point to the extracted directory:
-
-```bash
-export ORACLE_HOME=/path/to/instantclient_23_4
-export LD_LIBRARY_PATH=$ORACLE_HOME:$LD_LIBRARY_PATH
-export PATH=$ORACLE_HOME:$PATH
-```
-
-Replace `/path/to/instantclient_23_4` with the actual path where you extracted the archive.
-
-- Upload your wallet to the VM
-
-![Oracle Database at Google Cloud](images/walletupload.png)  
-
-- Unzip wallet by running
-
-```bash
-mkdir Wallet
-unzip <YOUR WALLET NAME>.zip
-```
-
-- Export path to your wallet to TNS_ADMIN  
-
-```bash
-export TNS_ADMIN=<PATH TO UNZIPPED WALLET>
-```
-
-Replace `<PATH TO WALLET>` with the actual path where you extracted wallet zip.
-
-- Install required packages
-
-```bash
-sudo apt-get install default-jdk libaio1 libaio-dev
-```
-
-- Download SQLCL - [here is official download page for SQLCL](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/download/)-
-
-```bash
-wget https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-latest.zip
-```
-
-- Unzip SQLCL
-
-```bash
-unzip sqlcl-24.3.0.285.0530.zip 
-```
-
-- Run SQLCL to connect to the Oracle Autonomous Database
-
-```bash
-./sqlcl/bin/sql admin/password@tnsname_medium
-```
-
-![Oracle Database at Google Cloud](images/sqlclconnected.png)  
-
-```sql
--- Create a table with a JSON column
-CREATE TABLE mytable (
-    id NUMBER PRIMARY KEY,
-    data VARCHAR2(4000) CHECK (data IS JSON)
-);
-
--- Insert some sample data
-INSERT INTO mytable (id, data) VALUES (1, '{"name":"John", "age":30}');
-INSERT INTO mytable (id, data) VALUES (2, '{"name":"Jane", "age":25}');
-
--- Query the JSON data using SQL/JSON functions
-SELECT * FROM mytable WHERE JSON_VALUE(data, '$.name') = 'John';
-
--- Update the JSON data using JSON_OBJECT function
-UPDATE mytable 
-SET data = JSON_OBJECT('name' VALUE JSON_VALUE(data, '$.name'), 'age' VALUE 31) 
-WHERE JSON_VALUE(data, '$.name') = 'John';
-```
-
-**Example 1:** Retrieve all rows where age is greater than 25
-
-```sql
-SELECT *
-FROM mytable
-WHERE JSON_VALUE(data, '$.age') > 25;
-```
-
-This query uses the JSON_VALUE function to extract the value of the age property from the data column and filters the results to include only rows where the age is greater than 25.
-
-**Example 2:** Retrieve the average age of all users
-
-```sql
-SELECT AVG(JSON_VALUE(data, '$.age')) AS avg_age
-FROM mytable;
-```
-
-This query uses the AVG aggregation function to calculate the average age of all users.
-
-**Example 3:** Retrieve the names of all users who are older than 30
-
-```sql
-SELECT JSON_VALUE(data, '$.name') AS name
-FROM mytable
-WHERE JSON_VALUE(data, '$.age') > 30;
-```
-
-This query extracts the value of the name property from the data column and filters the results to include only rows where the age is greater than 30.
-
-**Example 4:** Retrieve the count of users grouped by age range
-
-```sql
-SELECT 
-  CASE 
-    WHEN JSON_VALUE(data, '$.age') BETWEEN 20 AND 29 THEN '20-29'
-    WHEN JSON_VALUE(data, '$.age') BETWEEN 30 AND 39 THEN '30-39'
-    ELSE '40+'
-  END AS age_range,
-  COUNT(*) AS count
-FROM mytable
-GROUP BY 
-  CASE 
-    WHEN JSON_VALUE(data, '$.age') BETWEEN 20 AND 29 THEN '20-29'
-    WHEN JSON_VALUE(data, '$.age') BETWEEN 30 AND 39 THEN '30-39'
-    ELSE '40+'
-  END;
-```
-
-## Conclusion
-
-In conclusion, deploying an Autonomous Database on GCP involves several steps, including creating a VPC, subnets, firewall rules, a bastion host or Windows VM, and configuring instaclient and sqlcl. By automating these steps using a Bash script, we can streamline the process and reduce the risk of human error. The script provides a flexible and modular approach to deploying an Autonomous Database on GCP, allowing us to customize and extend it as needed.
-
-You may proceed to the next step [AI Chatbot engine with Oracle Database 23ai on Google Cloud](README_AICHATBOT.md)
