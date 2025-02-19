@@ -1,4 +1,4 @@
-# RAG Chatbot engine with Oracle Database 23ai on Google Cloud
+# RAG Chatbot engine with Oracle Database 23ai on Google Cloud Platform
 
 In this part of the blog we will teach you how you can implement a **RAG (Retrieval Augmented Generation)** chatbot using vector similarity search and Generative AI / LLMs.
 
@@ -11,7 +11,7 @@ The prerequisites needed to run this notebook are described [here](README.md)
 In a nutsehll, we need:
 
 - Google Cloud tenancy
-- Working multicloud Oracle Database 23ai
+- Oracle Database 23ai marketplace subscription
 - Linux (Ubuntu) virtual machine
 - Access to Google's Gemini generative AI service
 

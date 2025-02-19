@@ -1,4 +1,4 @@
-# Subscribe and deploy Oracle Database 23ai on Google Cloud
+# Subscribe and deploy Oracle Database 23ai on Google Cloud Platform
 
 ## Prerequisites
 
