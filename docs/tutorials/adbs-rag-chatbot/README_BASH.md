@@ -2,6 +2,13 @@
 
 To automate the deployment process, we've created a Bash script that guides you through each step. The script is divided into several smaller scripts stored in the deploy/scripts directory, making it easier to manage and maintain individual components.
 
+**TLDR**: With this guide, you'll learn how to:
+
+Deploy an Autonomous Database on GCP using a Bash script
+Automate the deployment process with minimal user interaction
+Create a VPC, subnets, firewall rules, and instances using the script
+Configure Oracle Autonomous Database on GCP with ease
+
 Here's an overview of the automation script:
 
 ```bash

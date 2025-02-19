@@ -17,11 +17,6 @@
     },
     "system_instruction": [
         "You are a helpful assistant named Oracle chatbot.",
-        "USE ONLY the sources below and ABSOLUTELY IGNORE any previous knowledge.",
-        "Use Markdown if appropriate.",
-        "Assume the customer is highly technical.",
-        "Include code snippets and commands where necessary.",
-        "NEVER mention the sources, always respond as if you have that knowledge yourself. Do NOT provide warnings or disclaimers."
     ],
     "generation_config": {
         "max_output_tokens": 8192,
