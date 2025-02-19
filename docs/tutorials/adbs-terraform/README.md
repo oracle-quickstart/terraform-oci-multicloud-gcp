@@ -24,41 +24,59 @@ This tutorial has the following prerequisites:
 - **[Google Cloud CLI](https://cloud.google.com/sdk/docs/install)** 
 - **[Terraform 1.5+](https://cloud.google.com/docs/terraform/install-configure-terraform#cloud-shell)** 
 
+<walkthrough-footnote></walkthrough-footnote>
+
 ### Verify software installation
 - **Google Cloud CLI** You should have result like `Google Cloud SDK XXX.X.X`
-  ``` bash
+  ``` sh
   gcloud -v | grep SDK
   ```
 - **Terraform**: You should have result like `Terraform vX.X.X`
-  ``` bash
+  ``` sh
   terraform -v | grep "Terraform v"
   ```
-<walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon	> You should be all set if using **Cloud Shell**, which pre-install tools like Google Cloud CLI and Terraform. 
+<walkthrough-footnote></walkthrough-footnote>
+
+
+### Cloud Shell in Default Mode (recommended) <walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon>
+- **Cloud Shell** already [pre-installed tools](https://cloud.google.com/shell/docs/how-cloud-shell-works#tools) e.g. Terraform and Google Cloud CLI. 
+- **Trust the repo** when you open this tutorial in Cloud Shell, the session will be in Default Mode that come with integrated authorization and persistent storage.
+- If you didn't trusted the repo, the session will be in [**Ephemeral Mode**](https://cloud.google.com/shell/docs/using-cloud-shell#choosing_ephemeral_mode) that **all the files you create in this session will be lost** on session end, including your terraform stage and customized configuration. The integrated authorization is not supported as well.
+
 
 
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 ## Authenication Google CLI & Terraform
-### Cloud Shell
-- When you firstly use `gcloud` or `terraform`, it prompts you to authorize like below and you will see it in next step.
+### Cloud Shell <walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon>
+- When you firstly use `gcloud` or `terraform`, it prompts you to authorize like below:
   ![Authorize Cloud Shell](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-authorize-cloud-shell.png?raw=true)
-- Simply click Authorize when you see it to allow the tool using your credentials to make calls.
-- You can skip the below if you're using Cloud Shell.  
+- Simply click `Authorize` when you see it (in the next step) to allow the tool using your credentials to make calls.
+- **You can proceed to next step if you're using Cloud Shell.** 
 
-### Local Shell
-- Use the following commands for authorizing CLI and Terraform, or follow the links for more details.
-  - [**Google Cloud CLI**](https://cloud.google.com/sdk/docs/authorizing#auth-google): `gcloud auth login`
-  - [**Terraform**](https://cloud.google.com/docs/terraform/authentication#local_dev_environment) `gcloud auth application-default login`
+<walkthrough-footnote></walkthrough-footnote>
+
+### Local Shell / Cloud Shell in Ephemeral Mode
+Use the following commands for authorizing CLI and Terraform, or follow the links for more details.
+- [**Authorizing Google Cloud CLI**](https://cloud.google.com/sdk/docs/authorizing#auth-google): 
+  ```sh
+  gcloud auth login
+  ```
+- [**Authorizing Terraform**](https://cloud.google.com/docs/terraform/authentication#local_dev_environment) 
+  ```sh
+  gcloud auth application-default login
+  ```
 
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 
 ## Google Cloud Project
 - You need a Google Cloud Project to start provisioning resources for this tutorial. Follow this [document](https://cloud.google.com/resource-manager/docs/creating-managing-projects) to create one if you don't have one.
-- Check your project ID is active and accessiable using the following command. Replace the `PROJECT_ID` with your Project ID.
-``` bash
-gcloud projects describe PROJECT_ID
-``` 
+- You can find your current Project ID at the [Google Cloud Console](https://console.cloud.google.com/welcome)
+- Check your project ID is active and accessiable using the following command. Replace the `PROJECT_ID` with your Project ID. 
+  ``` sh
+  gcloud projects describe PROJECT_ID
+  ``` 
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 ## Provision an Autonomous Database + VPC
