@@ -1,18 +1,19 @@
+locals {
+  project = "your_project_id"
+  customer_email = "your_email@here"
+  location = "europe-west2" 
+}
+
 module "gcp-oci-adbs-quickstart" {
   # source = "github.com/oracle-quickstart/terraform-oci-multicloud-gcp//templates/gcp-oci-adbs-quickstart"
   source = "../../templates/gcp-oci-adbs-quickstart"
   
-  project = "example"
-  customer_email = "your_email@here"
+  project = local.project
+  customer_email = local.customer_email
+  location = local.location
   admin_password = var.admin_password
 
-  location = "europe-west2"  
-  network_name = "example-vpc"
+  network_name = "vpc-adbs-tutorial"
   cidr = "10.1.0.0/24"
-
 }
 
-output "adbs_ocid" {
-  description = "OCID of this Autonomous Database @ Google Cloud"
-  value = module.gcp-oci-adbs-quickstart.oci_adbs_ocid
-}
