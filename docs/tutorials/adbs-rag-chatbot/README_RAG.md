@@ -4,11 +4,19 @@ In this part of the blog we will teach you how you can implement a **RAG (Retrie
 
 We will guide you through the process of loading and parsing a FAQ-like text file, integrating it with an Oracle 23ai database, and employing the Google Cloud Platform to order it and run the Python glue code and Generative AI services needed for the chatbot.
 
+**TLDR:** With this tutorial, you'll learn how to:
+
+- Implement a RAG chatbot using vector similarity search and Generative AI/LLMs
+- Load and parse a FAQ-like text file, integrating it with an Oracle 23ai database
+- Employ the Google Cloud Platform to order and run the Python glue code and Generative AI services needed for the chatbot
+- Use the Oracle Database 23ai vector database to store and retrieve relevant information
+- Leverage the Gemini Generative AI service to generate high-quality responses to user queries
+
 ## Setup the working environment in Google Cloud
 
 The prerequisites needed to run this notebook are described [here](README.md)
 
-In a nutsehll, we need:
+In a nutshell, we need:
 
 - Google Cloud tenancy
 - Oracle Database 23ai marketplace subscription
@@ -27,12 +35,15 @@ tutorial, we will use Python 3.12. If you are more comfortable with other ways t
 Open the terminal pane in VSCode and run the following commands (for the latest version of this procedure, see [the official pyenv page here](https://github.com/pyenv/pyenv-installer)):
 
 ```bash
+# Install dependencies
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
 xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
 
+# Download and install pyenv
 curl https://pyenv.run | bash
 
+# Configure pyenv
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
 echo 'eval "$(pyenv init -)"' >> ~/.profile
@@ -41,27 +52,22 @@ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
+# Reload shell configuration
 exec "$SHELL"
-```
 
-Now it should be easy to get Python 3.12 on your machine:
-
-```bash
+# Install Python 3.12 using pyenv
 pyenv install 3.12
-```
 
-Once done, create a new folder called `vectors` in your VSCode explorer window and copy this notebook and the `faq.txt` file inside it.
+# Create a new directory for the project
+mkdir vectors
 
-Back in the terminal pane, `cd` to the `vectors` folder and make Python 3.12 the active kernel for it:
-
-```bash
+# Change into the new directory
 cd vectors
+
+# Make Python 3.12 the active kernel
 pyenv local 3.12
-```
 
-Last step in this phase is installing the Python libraries for accessing the Oracle Database and sentence transformers (to convert strings to vectors):
-
-```bash
+# Install required libraries
 pip install oracledb
 pip install sentence-transformers
 ```
@@ -124,6 +130,15 @@ The array is stored inside a dictionary with the file name used as the key. This
 import os
 
 def loadFAQs(directory_path):
+    """
+    Loads FAQs from a file and returns a dictionary with file names as keys and lists of FAQs as values.
+    
+    Parameters:
+    directory_path (str): Path to the directory containing the FAQ files.
+    
+    Returns:
+    dict: Dictionary with file names as keys and lists of FAQs as values.
+    """
     faqs = {}
 
     for filename in os.listdir(directory_path):
@@ -131,14 +146,14 @@ def loadFAQs(directory_path):
             file_path = os.path.join(directory_path, filename)
 
             with open(file_path) as f:
-            raw_faq = f.read()
+                raw_faq = f.read()
 
             filename_without_ext = os.path.splitext(filename)[0]  # remove .txt extension
             faqs[filename_without_ext] = [text.strip() for text in raw_faq.split('=====')]
 
     return faqs
+
 faqs = loadFAQs('.')
-faqs
 ```
 
 The final step in preparing the source data is to arrange the above dictionary in a way that is easy to ingest in the vector database. Enter this code into a new cell.

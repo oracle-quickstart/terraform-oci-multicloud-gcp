@@ -1,11 +1,19 @@
 # Subscribe and deploy Oracle Database 23ai on Google Cloud Platform
 
+In this comprehensive guide, we'll walk you through the process of deploying an Autonomous Database on GCP, covering the prerequisites, subscription, deployment, and connection steps.
+
+**TLDR: ** With this guide, you'll learn how to:
+
+Deploy an Autonomous Database on GCP using Terraform
+Subscribe to Oracle Autonomous Database on GCP
+Connect to the database using SQLCL and APEX UI
+Perform various operations, such as creating tables, inserting data, and querying JSON data
+
 ## Prerequisites
 
 Before we begin, make sure you have the following prerequisites:
 
 - A GCP account with the necessary permissions to create resources
-- A Bash shell installed on your system
 - The gcloud command-line tool installed and configured on your system
 - Oracle Autonomous Database at Google Cloud Platform(GCP) marketplace image
 
@@ -60,6 +68,10 @@ export PATH=$ORACLE_HOME:$PATH
 
 Replace `/path/to/instantclient_23_4` with the actual path where you extracted the archive.
 
+```bash
+mkdir Wallet
+```
+
 - Upload your wallet to the VM
 
 ![Oracle Database at Google Cloud](images/walletupload.png)  
@@ -67,17 +79,16 @@ Replace `/path/to/instantclient_23_4` with the actual path where you extracted t
 - Unzip wallet by running
 
 ```bash
-mkdir Wallet
-unzip <YOUR WALLET NAME>.zip
+unzip </path/to/Wallet.zip>.zip
 ```
 
 - Export path to your wallet to TNS_ADMIN  
 
 ```bash
-export TNS_ADMIN=<PATH TO UNZIPPED WALLET>
+export TNS_ADMIN=</path/to/Wallet>
 ```
 
-Replace `<PATH TO WALLET>` with the actual path where you extracted wallet zip.
+Replace `</path/to/Wallet>` with the actual path where you extracted wallet zip.
 
 - Install required packages
 
@@ -104,6 +115,8 @@ unzip sqlcl-24.3.0.285.0530.zip
 ```
 
 ![Oracle Database at Google Cloud](images/sqlclconnected.png)  
+
+#### (Optional) few commands to warm up your SQL powers
 
 ```sql
 -- Create a table with a JSON column
@@ -205,6 +218,6 @@ Then choose Oracle APEX
 
 ## Conclusion
 
-In conclusion, deploying an Autonomous Database on GCP involves several steps, including creating a VPC, subnets, firewall rules, a bastion host or Windows VM, and configuring instaclient and sqlcl. By automating these steps using a Bash script, we can streamline the process and reduce the risk of human error. The script provides a flexible and modular approach to deploying an Autonomous Database on GCP, allowing us to customize and extend it as needed.
+In conclusion, deploying an Autonomous Database on GCP involves several steps, including creating a VPC, subnets, firewall rules, a bastion host or Windows VM, and configuring instaclient and sqlcl.
 
-You may proceed to the next step [AI Chatbot engine with Oracle Database 23ai on Google Cloud](README_RAG.md)
+You may proceed to the next step [RAG Chatbot engine with Oracle Database 23ai on Google Cloud](README_RAG.md)
