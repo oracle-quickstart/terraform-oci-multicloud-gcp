@@ -97,7 +97,7 @@ variable "db_edition" {
 variable "is_auto_scaling_enabled" {
   type        = bool
   description = "This field indicates if auto scaling is enabled for the Autonomous Database CPU core count."
-  default     = true
+  default     = false
 }
 
 

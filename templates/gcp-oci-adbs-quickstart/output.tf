@@ -19,6 +19,11 @@ output "project" {
   value       = module.google_ora_adbs.resource.project
 }
 
+output "network_name" {
+  value = google_compute_network.this.name
+}
+
+
 # Info for OCI
 output "oci_adbs_ocid" {
   description = "OCID of Autonomous Database in OCI"

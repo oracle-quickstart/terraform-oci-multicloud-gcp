@@ -1,80 +1,106 @@
-# Provision Autonomous Database @ Google Cloud with Terraform
+# Oracle Database@Google Cloud
 
-This tutorial will guide you through provisioning Autonomous Database @ Google Cloud using OCI Multicloud Landing Zone's quickstart template.
-You will learn how to deploy the following architecture in pre-configured default settings with minimal mandatory inputs.
+## Provision Autonomous Database with Terraform
+<walkthrough-tutorial-duration duration="20"></walkthrough-tutorial-duration>
 
 ![gcp-oci-adbs-quickstart](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-oci-adbs-quickstart.png?raw=true)
 
-## Prerequisites and setup
+In this tutorial, you will 
 
+1. Setup your Terraform environment for this tutorial
+2. Provision an Oracle Autonomous Database in a new VPC
+3. Provision an client VM in a new client subnet
+4. Perform a sample query from client VM
+5. Cleanup the environment
+
+**Let's get started!**
+
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
+
+## Prerequisite
 This tutorial has the following prerequisites:
 
-- Google Cloud CLI
-- Terraform 1.5.0+
-- An existing Google Cloud project
+- **[Terraform 1.5+](https://cloud.google.com/sdk/docs/install)** : Verify with `terraform -v` 
+- **[Google Cloud CLI](https://developer.hashicorp.com/terraform/install)** : Verify with `gcloud -v`
+- **[Google Cloud Project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)** : For resources of this tutorial.
 
-### Verify Google Cloud CLI installation and version
+<walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> You should be all set if you're running this tutorial with Google Cloud Shell. A `Google Cloud project` is all you need for this tutorial. 
 
-```bash
-gcloud -v
-```
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
-### Verify Terraform installation and version
+## Environment setup
 
-```bash
-terraform -v
-```
+<walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> You should be all set if you're running this tutorial with Google Cloud Shell.
 
-### Authenicate to Google Cloud
- 
-```bash
+### Authenication
+
+Application Default Credentials (ADC) is the recommended way to authenticate to Google Cloud when using Terraform.
+https://cloud.google.com/docs/terraform/authentication
+
 gcloud auth application-default login
+
+```
+gcloud projects describe PROJECT_ID
 ```
 
-```bash
-gcloud auth list 
+## Provision an Oracle Autonomous Database in a new VPC
+### 
+<walkthrough-editor-open-file filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf">Edit main.tf</walkthrough-editor-open-file>
+
+<walkthrough-editor-select-line filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" startLine="2" endLine="4" startCharacterOffset="0" endCharacterOffset="0">line 2-3</walkthrough-editor-select-line>
+
+<walkthrough-editor-select-regex filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" regex="\b(project|location)\b">LINK_TEXT</walkthrough-editor-select-regex>
+
+## Provision an client VM in a new client subnet
+<walkthrough-editor-open-file filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" startLine="2" endLine="3">Update project ID</walkthrough-editor-open-file>
+
 ```
-
-### Check access to the project
-
-```bash
-export GCP_PROJECT=example
-gcloud config set project $GCP_PROJECT
-```
-
-```bash
-gcloud config get-value project
-```
-
-## Step 1: Setup project and mandatory parameters
-
-| Name | Description | Example | 
-|------|-------------|:--------:|
-| <a name="input_project"></a> [project](#input\_project) | The ID of the project in which the Autonomous Database belongs. | `example` |
-| <a name="input_location"></a> [location](#input\_location) | GCP region where Autonmous Database is hosted. | `europe-west2` |
-| <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VPC network used by the Autonomous Database | `example-vpc` |
-| <a name="input_cidr"></a> [cidr](#input\_cidr) | The subnet CIDR range for the Autonmous Database | `10.1.0.0/24` |
-| <a name="input_customer_email"></a> [customer\_email](#input\_customer\_email) | The email address used by Oracle to send notifications regarding databases and infrastructure. | `your_email@example.com` |
-| <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The password for the default ADMIN user | "Your0wnV@lue" |
-
-## Step 2: Provision with Terraform
-
-### Initialize Terraform 
-```bash
-terraform init
-```
-
-### Review plan and provision
-```bash
-terraform plan
+module "oradb-client" {
+  # source = "github.com/oracle-quickstart/terraform-oci-multicloud-gcp//templates/oradb-client"
+  source = "../../templates/oradb-client"
+  project = local.project
+  location = local.location
+  network_name = module.gcp-oci-adbs-quickstart.network_name
+  cidr = "10.2.0.0/24"
+}
 ```
 
 ```bash
 terraform apply
 ```
 
-## Step 3: Clean up
 
+
+## Perform a sample query from client VM
+
+### Connect to the VM
 ```bash
-terraform destroy
+gcloud compute ssh --project "your_project_here" --zone "your_region" "your_vm_name"
 ```
+
+### Connect to Autonomous Database
+```bash
+sqlplus admin@"your_connect_string"
+```
+
+### Query
+
+```sql
+select cloud_identity from v$pdbs;
+```
+
+## Congratulations
+You've successfully provision an Autonomous Database of *Oracle Database@Google Cloud with Terraform*. 
+<walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
+
+### What's next:
+
+- **Continue with RAG based Chatbot engine**: Start next tutorial to build an RAG based Chatbot engine base on the Autonomous Database you've just provisioned.
+    ```bash
+    cloudshell launch-tutorial -d test.md 
+    ```
+- **Don't forget to clean up**: Run the following command to cleanup the environment when you're done with all the related tutorials.
+    ```bash
+    terraform destroy
+    ```
+- **Explore more**: See the [OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp) for more Terraform modules, templates, examples, and tutorials for Oracle Database @ Google.
