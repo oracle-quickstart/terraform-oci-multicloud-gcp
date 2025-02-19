@@ -31,7 +31,7 @@ This tutorial has the following prerequisites:
   ```
 - **Terraform**: You should have result like `Terraform vX.X.X`
   ``` bash
-  terraform -v
+  terraform -v | grep "Terraform v"
   ```
 <walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon	> You should be all set if using **Cloud Shell**, which pre-install tools like Google Cloud CLI and Terraform. 
 
@@ -39,11 +39,14 @@ This tutorial has the following prerequisites:
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 ## Authenication Google CLI & Terraform
-
-- When you firstly use `gcloud` or `terraform` in the **Cloud Shell**, it prompts you to authorize like below. 
+### Cloud Shell
+- When you firstly use `gcloud` or `terraform`, it prompts you to authorize like below and you will see it in next step.
   ![Authorize Cloud Shell](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-authorize-cloud-shell.png?raw=true)
-- Simply click Authorize to allow the tool to use your credentials to make calls.
-- Or you can use the following commands for authorizing CLI and Terraform in **local shell** environment. Follow the links for more details.
+- Simply click Authorize when you see it to allow the tool using your credentials to make calls.
+- You can skip the below if you're using Cloud Shell.  
+
+### Local Shell
+- Use the following commands for authorizing CLI and Terraform, or follow the links for more details.
   - [**Google Cloud CLI**](https://cloud.google.com/sdk/docs/authorizing#auth-google): `gcloud auth login`
   - [**Terraform**](https://cloud.google.com/docs/terraform/authentication#local_dev_environment) `gcloud auth application-default login`
 
