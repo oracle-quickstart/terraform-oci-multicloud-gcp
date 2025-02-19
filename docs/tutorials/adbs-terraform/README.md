@@ -17,39 +17,75 @@ In this tutorial, you will
 
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
-## Prerequisite
+## Prerequisites
 This tutorial has the following prerequisites:
+- **[Oracle Database@Google Cloud subscription](https://console.cloud.google.com/marketplace/product/oracle/oracle-database-at-google-cloud)**
+- **[Google Cloud Project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)**
+- **[Google Cloud CLI](https://cloud.google.com/sdk/docs/install)** 
+- **[Terraform 1.5+](https://cloud.google.com/docs/terraform/install-configure-terraform#cloud-shell)** 
 
-- **[Terraform 1.5+](https://cloud.google.com/sdk/docs/install)** : Verify with `terraform -v` 
-- **[Google Cloud CLI](https://developer.hashicorp.com/terraform/install)** : Verify with `gcloud -v`
-- **[Google Cloud Project](https://cloud.google.com/resource-manager/docs/creating-managing-projects)** : For resources of this tutorial.
+### Verify software installation
+- **Google Cloud CLI** You should have result like `Google Cloud SDK XXX.X.X`
+  ``` bash
+  gcloud -v | grep SDK
+  ```
+- **Terraform**: You should have result like `Terraform vX.X.X`
+  ``` bash
+  terraform -v
+  ```
+<walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon	> You should be all set if using **Cloud Shell**, which pre-install tools like Google Cloud CLI and Terraform. 
 
-<walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> You should be all set if you're running this tutorial with Google Cloud Shell. A `Google Cloud project` is all you need for this tutorial. 
 
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
-## Environment setup
+## Authenication Google CLI & Terraform
 
-<walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> You should be all set if you're running this tutorial with Google Cloud Shell.
+- When you firstly use `gcloud` or `terraform` in the **Cloud Shell**, it prompts you to authorize like below. 
+  ![Authorize Cloud Shell](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-authorize-cloud-shell.png?raw=true)
+- Simply click Authorize to allow the tool to use your credentials to make calls.
+- Or you can use the following commands for authorizing CLI and Terraform in **local shell** environment. Follow the links for more details.
+  - [**Google Cloud CLI**](https://cloud.google.com/sdk/docs/authorizing#auth-google): `gcloud auth login`
+  - [**Terraform**](https://cloud.google.com/docs/terraform/authentication#local_dev_environment) `gcloud auth application-default login`
 
-### Authenication
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
-Application Default Credentials (ADC) is the recommended way to authenticate to Google Cloud when using Terraform.
-https://cloud.google.com/docs/terraform/authentication
 
-gcloud auth application-default login
-
-```
+## Google Cloud Project
+- You need a Google Cloud Project to start provisioning resources for this tutorial. Follow this [document](https://cloud.google.com/resource-manager/docs/creating-managing-projects) to create one if you don't have one.
+- Check your project ID is active and accessiable using the following command. Replace the `PROJECT_ID` with your Project ID.
+``` bash
 gcloud projects describe PROJECT_ID
-```
+``` 
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
-## Provision an Oracle Autonomous Database in a new VPC
-### 
-<walkthrough-editor-open-file filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf">Edit main.tf</walkthrough-editor-open-file>
+## Provision an Autonomous Database + VPC
+You will provision the resources by using [gcp-oci-adbs-quickstart](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/tree/main/templates/gcp-oci-adbs-quickstart) template.
 
-<walkthrough-editor-select-line filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" startLine="2" endLine="4" startCharacterOffset="0" endCharacterOffset="0">line 2-3</walkthrough-editor-select-line>
 
-<walkthrough-editor-select-regex filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" regex="\b(project|location)\b">LINK_TEXT</walkthrough-editor-select-regex>
+### 1. Customise configuration
+- Update `project` and `customer_email` in <walkthrough-editor-select-line filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" startLine="5" endLine="7" startCharacterOffset="0" endCharacterOffset="0">main.tf</walkthrough-editor-select-line>.
+- Review and customise other parameters as needed.
+- You can setup the admin password using environment variable as shown below. Or you will be prompted when applying the Terraform.
+  ``` bash
+  export TF_VAR_admin_password=YourOwnPw
+  ``` 
+
+### 2. Initialize Terraform 
+Run the following command to initialize Terraform. This will prepare the working directory of Terraform configuration, including accessing state, downloading and installing provider plugins, and downloading modules.
+``` bash
+terraform init
+``` 
+### 3. Validate configuration
+Run the following command to validate the configuration. This will generate an execution plan for you to preview the changes.
+``` bash
+terraform plan
+``` 
+### 4. Provision resources 
+Run the following command to provision the resources when the plan is good to go. You will have to review and confirm the plan by typing `yes` before proceed. 
+``` bash
+terraform apply
+``` 
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 ## Provision an client VM in a new client subnet
 <walkthrough-editor-open-file filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" startLine="2" endLine="3">Update project ID</walkthrough-editor-open-file>
@@ -70,6 +106,7 @@ terraform apply
 ```
 
 
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 ## Perform a sample query from client VM
 
@@ -89,6 +126,8 @@ sqlplus admin@"your_connect_string"
 select cloud_identity from v$pdbs;
 ```
 
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
+
 ## Congratulations
 You've successfully provision an Autonomous Database of *Oracle Database@Google Cloud with Terraform*. 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
@@ -104,3 +143,5 @@ You've successfully provision an Autonomous Database of *Oracle Database@Google 
     terraform destroy
     ```
 - **Explore more**: See the [OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp) for more Terraform modules, templates, examples, and tutorials for Oracle Database @ Google.
+
+<walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
