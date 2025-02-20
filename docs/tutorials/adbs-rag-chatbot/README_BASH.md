@@ -4,12 +4,36 @@ To automate the deployment process, we've created a Bash script that guides you 
 
 **TLDR**: With this guide, you'll learn how to:
 
-Deploy an Autonomous Database on GCP using a Bash script
-Automate the deployment process with minimal user interaction
-Create a VPC, subnets, firewall rules, and instances using the script
-Configure Oracle Autonomous Database on GCP with ease
+- Deploy an Autonomous Database on GCP using a Bash script
+- Automate the deployment process with minimal user interaction
+- Create a VPC, subnets, firewall rules, and instances using the script
+- Configure Oracle Autonomous Database on GCP with ease
 
-Here's an overview of the automation script:
+## Run the script 
+
+- Clone the repo
+- Navigate to the deploy directory `cd docs/tutorials/adbs-rag-chatbot/deploy`
+- Update copy config json and update it with your config parameters: `cp config.json.txt config.json`
+
+```json
+{
+  "project_id": "",
+  "region": "",
+  "vpc_name": "",
+  "public_subnet": "",
+  "private_subnet": "",
+  "ingress_rule": "",
+  "egress_rule": "",
+  "admin_password": "",
+  "web_server_name": "",
+  "database_name": "",
+  "database_display_name": ""
+}
+```
+
+- Run bash script in your gcp cli: `./deploy.sh`
+
+## Code walkthrough
 
 ```bash
 #!/bin/bash

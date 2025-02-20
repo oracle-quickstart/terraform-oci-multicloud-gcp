@@ -6,7 +6,6 @@
   "private_subnet": "",
   "ingress_rule": "",
   "egress_rule": "",
-  "bastion_name": "",
   "admin_password": "",
   "web_server_name": "",
   "database_name": "",

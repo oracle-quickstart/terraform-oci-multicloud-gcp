@@ -2,12 +2,12 @@
 
 In this comprehensive guide, we'll walk you through the process of deploying an Autonomous Database on GCP, covering the prerequisites, subscription, deployment, and connection steps.
 
-**TLDR: ** With this guide, you'll learn how to:
+**TLDR:** With this guide, you'll learn how to:
 
-Deploy an Autonomous Database on GCP using Terraform
-Subscribe to Oracle Autonomous Database on GCP
-Connect to the database using SQLCL and APEX UI
-Perform various operations, such as creating tables, inserting data, and querying JSON data
+- Deploy an Autonomous Database on GCP using Terraform
+- Subscribe to Oracle Autonomous Database on GCP
+- Connect to the database using SQLCL and APEX UI
+- Perform various operations, such as creating tables, inserting data, and querying JSON data
 
 ## Prerequisites
 

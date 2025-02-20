@@ -1,6 +1,6 @@
-# Deploying Oracle Database on Google Cloud Platform (GCP)
+# Build a Multicloud AI Chatbot with Autonomous Database on Google Cloud
 
-One of the key benefits of using GCP is its ability to support a wide range of databases, including Oracle. In this blog post, we'll focus on deploying an Autonomous Database on Google Cloud Platform (GCP). An Autonomous Database is a self-managing database that automatically handles maintenance tasks, freeing up your time to focus on higher-level tasks.
+One of the key benefits of using Google Cloud is its ability to support a wide range of databases, including Oracle. In this blog post, we'll focus on deploying an Autonomous Database on Google Cloud. An Autonomous Database is a self-managing database that automatically handles maintenance tasks, freeing up your time to focus on higher-level tasks.
 
  We will cover the following topics:
 
@@ -19,7 +19,7 @@ Before we begin, make sure you have the following prerequisites:
 - A GCP account with the necessary permissions to create resources
 - A Bash shell installed on your system
 - The gcloud command-line tool installed and configured on your system
-- Oracle Autonomous Database at Google Cloud Platform(GCP) marketplace image
+- Oracle Autonomous Database at Google Cloud marketplace image
 
 ## How to content
 
