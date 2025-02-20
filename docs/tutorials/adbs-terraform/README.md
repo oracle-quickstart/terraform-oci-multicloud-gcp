@@ -88,9 +88,10 @@ Template [gcp-oci-adbs-quickstart](https://github.com/oracle-quickstart/terrafor
 ### 1. Customise the sample configuration
 - Open <walkthrough-editor-select-line filePath="cloudshell_open/terraform-oci-multicloud-gcp/examples/adbs-minimal/main.tf" startLine="1" endLine="3" startCharacterOffset="0" endCharacterOffset="0">main.tf</walkthrough-editor-select-line> to update `project` and `customer_email` to start with.
 - Review and customise other parameters as needed, save the file when you're done.
-- Setup the admin password using environment variable as shown below. Or you will be prompted when applying the Terraform.
+- Setup the admin password using environment variable as shown below. Or you will be prompted when applying the Terraform. 
+- The admin password must be between 12 and 30 characters long and contain a digit.
   ``` bash
-  export TF_VAR_admin_password="YourOwnPw"
+  export TF_VAR_admin_password="Your0wnPassword"
   ``` 
 <walkthrough-footnote></walkthrough-footnote>
 ### 2. Initialize Terraform 
