@@ -172,6 +172,7 @@ You've successfully provision an Autonomous Database of *Oracle Database@Google 
 - You get a new output `client_vm` when the apply complete.
 
 <walkthrough-footnote></walkthrough-footnote>
+
 ### Check Terraform Idempotency
 - You can check the terraform idempotency by re-running `terraform apply`
   ```sh

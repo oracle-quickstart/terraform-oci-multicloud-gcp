@@ -66,6 +66,8 @@ for ((i=0; i<${#steps[@]}; i+=2)); do
 done
 ```
 
+## Step-by-Step Guide
+
 Let's walk through each step in detail:
 
 ### Load Configuration

@@ -2,6 +2,7 @@
 
 Next we'll explore how to build a Streamlit frontend app that connects to an Oracle Autonomous Database on Google Cloud Platform (GCP). We'll cover the prerequisites, installation steps, and provide a sample code snippet to get you started.
 
+### Streamlit Frontend App
 This Streamlit app connects to an Oracle database, retrieves FAQs, and generates responses using a generative model.
 
 **TLDR:** With this app, you'll be able to:
