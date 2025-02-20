@@ -19,6 +19,18 @@ output "project" {
   value       = module.google_ora_adbs.resource.project
 }
 
+output "network_name" {
+  description = "The name of the VPC"
+  value = google_compute_network.this.name
+}
+
+output "resource" {
+  description = "The AutonomousDatabase object"
+  value = module.google_ora_adbs.resource
+}
+
+
+
 # Info for OCI
 output "oci_adbs_ocid" {
   description = "OCID of Autonomous Database in OCI"

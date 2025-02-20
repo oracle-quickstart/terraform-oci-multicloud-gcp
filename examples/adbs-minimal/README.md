@@ -1,26 +1,27 @@
 # Provision Autonomous Database @ Google Cloud with minimal inputs
 
-This example provision a Autonomous Database @ Google Cloud by using the quickstart template directly with minimal input.
+This example provision a Autonomous Database @ Google Cloud by using the [gcp-oci-adbs-quickstart](#module\_gcp-oci-adbs-quickstart) template with minimal input.
 
-## Modules
+## Example
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Foracle-quickstart%2Fterraform-oci-multicloud-gcp&cloudshell_git_branch=adbs-ai&cloudshell_open_in_editor=main.tf&cloudshell_workspace=.%2Fexamples%2Fadbs-minimal&cloudshell_tutorial=..%2F..%2Fdocs%2Ftutorials%2Fadbs-terraform%2FREADME.md)
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_gcp-oci-adbs-quickstart"></a> [gcp-oci-adbs-quickstart](#module\_gcp-oci-adbs-quickstart) | ../../templates/gcp-oci-adbs-quickstart | n/a |
+```tf
+module "gcp-oci-adbs-quickstart" {
+  # source = "github.com/oracle-quickstart/terraform-oci-multicloud-gcp//templates/gcp-oci-adbs-quickstart"
+  source = "../../templates/gcp-oci-adbs-quickstart"
+  project = "example"
+  location = "europe-west2"  
+  network_name = "example-vpc"
+  cidr = "10.1.0.0/24"
+  customer_email = "your_email@here"
+  admin_password = "DoNotKeepThis$1234"
+}
 
-## Inputs
+output "adbs_ocid" {
+  description = "OCID of this Autonomous Database @ Google Cloud"
+  value = module.gcp-oci-adbs-quickstart.oci_adbs_ocid
+}
+```
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_project"></a> [project](#input\_project) | The ID of the project in which the resource belongs. If it is not provided, the provider project is used. | `string` | n/a | yes |
-| <a name="input_location"></a> [location](#input\_location) | GCP region where Autonmous Database is hosted. | `string` | n/a | yes |
-| <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VPC network used by the Autonomous Database | `string` | n/a | yes |
-| <a name="input_cidr"></a> [cidr](#input\_cidr) | The subnet CIDR range for the Autonmous Database | `string` | n/a | yes |
-| <a name="input_customer_email"></a> [customer\_email](#input\_customer\_email) | The email address used by Oracle to send notifications regarding databases and infrastructure. | `string` | n/a | yes |
-| <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The password for the default ADMIN user | `string` | n/a | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="output_adbs_ocid"></a> [adbs\_ocid](#output\_adbs\_ocid) | OCID of this Autonomous Database @ Google Cloud |
+## Architecture
+![gcp-oci-adbs-quickstart](../../images/gcp-oci-adbs-quickstart.png)

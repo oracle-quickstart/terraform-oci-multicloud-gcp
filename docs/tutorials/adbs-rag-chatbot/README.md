@@ -6,9 +6,11 @@ One of the key benefits of using GCP is its ability to support a wide range of d
 
 - Creating a virtual private cloud (VPC) network
 - Creating subnets and firewall rules
-- Creating a bastion host or a Windows VM for easy APEX development
+- Creating a Ubuntu VM with access to Oracle Autonomous Database or a Windows VM for easy APEX development
 - Deploying an Oracle Autonomous Database
 - Configuring instaclient and sqlcl for Oracle Autonomous Database
+- Loading vectors to our Oracle Autonomous Database vector store
+- Performing similarity search and surfacing answers in the frontend
 
 ## Prerequisites
 
@@ -19,9 +21,10 @@ Before we begin, make sure you have the following prerequisites:
 - The gcloud command-line tool installed and configured on your system
 - Oracle Autonomous Database at Google Cloud Platform(GCP) marketplace image
 
+## How to content
+
 Content of this lab is split into 3 sections:
 
 1. [Subscribe and deploy Oracle Database 23ai on Google Cloud](README_INFRASTRUCTURE.md)  
-2. [AI Chatbot engine with Oracle Database 23ai on Google Cloud](README_AICHATBOT.md)  
-3. [Add Streamlit Frontend App for Oracle Autonomous Database on GCP](README_FRONTEND.md)
-
+2. [RAG Chatbot engine with Oracle Database 23ai on Google Cloud](README_RAG.md)  
+3. [Add Streamlit Frontend App for Oracle Database 23ai on Google Cloud](README_FRONTEND.md)

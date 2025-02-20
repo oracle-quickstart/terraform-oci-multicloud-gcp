@@ -1,22 +1,30 @@
 # gcp-oci-adbs-quickstart
-This is a quick-start template for provision Autonomous Database @ Google Cloud with a VPC in a given existing project.
+This is a quick-start template for provision an Autonomous Database @ Google Cloud with a VPC in a given existing project.
+
+## Architecture
+![gcp-oci-adbs-quickstart](../../images/gcp-oci-adbs-quickstart.png)
 
 ## Example
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?&ephemeral=false&cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Foracle-quickstart%2Fterraform-oci-multicloud-gcp&cloudshell_git_branch=adbs-ai&cloudshell_open_in_editor=.%2Fexamples%2Fadbs-minimal%2Fmain.tf&cloudshell_workspace=.&cloudshell_tutorial=.%2Fdocs%2Ftutorials%2Fadbs-terraform%2FREADME.md)
+
 ```tf
 module "gcp-oci-adbs-quickstart" {
   # source = "github.com/oracle-quickstart/terraform-oci-multicloud-gcp//templates/gcp-oci-adbs-quickstart"
   source = "../../templates/gcp-oci-adbs-quickstart"
+
   project = "example"
-  location = "europe-west2"  
-  network_name = "example-vpc"
-  cidr = "10.1.0.0/24"
   customer_email = "your_email@here"
-  admin_password = "DoNotKeepThis$1234"
+  location = "europe-west2"  
+  admin_password = var.admin_password
+
+  network_name = "vpc-adbs-tutorial"
+  cidr = "10.1.0.0/24"
 }
 
-output "adbs_ocid" {
-  description = "OCID of this Autonomous Database @ Google Cloud"
-  value = module.gcp-oci-adbs-quickstart.oci_adbs_ocid
+variable "admin_password" {
+  description = "Admin password"
+  type = string
+  sensitive = true
 }
 ```
 

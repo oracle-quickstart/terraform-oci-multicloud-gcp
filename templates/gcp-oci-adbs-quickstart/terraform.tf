@@ -1,7 +1,6 @@
 
 terraform {
-  # Azure Verified Modules require TF 1.9.2
-  required_version = "~> 1.9.2"
+  required_version = ">= 1.5.0"
   required_providers {
     # https://registry.terraform.io/providers/hashicorp/local/latest/docs
     local = {
