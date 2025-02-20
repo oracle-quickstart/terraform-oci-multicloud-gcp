@@ -169,8 +169,9 @@ You've successfully provision an Autonomous Database of *Oracle Database@Google 
   terraform apply
   ```
   You should see `Plan: 6 to add, 0 to change, 0 to destroy.`, confirm proceed with `yes`.
-- You get a new output `client_vm_name` when the apply complete.
+- You get a new output `client_vm` when the apply complete.
 
+<walkthrough-footnote></walkthrough-footnote>
 ### Check Terraform Idempotency
 - You can check the terraform idempotency by re-running `terraform apply`
   ```sh
@@ -207,11 +208,15 @@ You've successfully provision an Autonomous Database of *Oracle Database@Google 
   gcloud compute scp cloud_identity.sql $VM_NAME:~/ --project $VM_PROJECT --zone $VM_ZONE
   ```
   - `gcloud` will prompt you to input the passphrase for the newly generated SSH key when you run this for the first time.
-
 - You can query the Autonomous Database from the client VM using SSH (`gcloud compute ssh`) and SQLPlus (`--command="sqlplus"`) together
   ```sh
   gcloud compute ssh --project $VM_PROJECT --zone $VM_ZONE $VM_NAME --command="sqlplus admin/$TF_VAR_admin_password@'$CONNSTR' @cloud_identity.sql" 
   ```
+  - If you receive `SQLPlus not avaialble` error, retry after a little while. The SQLPlus installation might take a few minutes to complete after the VM is provisioned.
+  - You can use the following command to verify the sqlplus installation.
+    ```sh
+    gcloud compute ssh --project $VM_PROJECT --zone $VM_ZONE $VM_NAME --command="sqlplus -v" 
+    ```
 <walkthrough-footnote></walkthrough-footnote>
 
 ### Connect SQLPlus at the client VM
