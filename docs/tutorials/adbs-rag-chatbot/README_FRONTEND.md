@@ -2,7 +2,6 @@
 
 Next we'll explore how to build a Streamlit frontend app that connects to an Oracle Autonomous Database on Google Cloud Platform (GCP). We'll cover the prerequisites, installation steps, and provide a sample code snippet to get you started.
 
-### Streamlit Frontend App
 This Streamlit app connects to an Oracle database, retrieves FAQs, and generates responses using a generative model.
 
 **TLDR:** With this app, you'll be able to:
@@ -11,6 +10,66 @@ This Streamlit app connects to an Oracle database, retrieves FAQs, and generates
 - Retrieve FAQs and relevant information with precision
 - Generate responses using advanced generative models
 - Provide users with accurate and informative answers to their queries
+
+## Run the app
+
+- Clone the repo
+- Navigate to the `tutorial` directory: `cd docs/tutorials/adbs-rag-chatbot`
+- Update copy config json and update it with your config parameters: `cp app/config.json.txt app/config.json`
+  
+```json
+{
+    "oracle": {
+        "username": "",
+        "password": "",
+        "dsn": "",
+        "wallet_directory": "",
+        "wallet_password": ""
+    },
+    "vertex_ai": {
+        "project_id": "",
+        "location": ""
+    },
+    "models": {
+        "sentence_transformer": "all-MiniLM-L12-v2",
+        "llama_tokenizer": "hf-internal-testing/llama-tokenizer",
+        "generative_model": "gemini-1.5-flash-002"
+    },
+    "system_instruction": [
+        "You are a helpful assistant named Oracle chatbot.",
+    ],
+    "generation_config": {
+        "max_output_tokens": 8192,
+        "temperature": 1,
+        "top_p": 0.95
+    },
+    "safety_settings": [
+        {
+            "category": "HARM_CATEGORY_HATE_SPEECH",
+            "threshold": "OFF"
+        },
+        {
+            "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+            "threshold": "OFF"
+        },
+        {
+            "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "threshold": "OFF"
+        },
+        {
+            "category": "HARM_CATEGORY_HARASSMENT",
+            "threshold": "OFF"
+        }
+    ]
+}
+```
+
+- Create a virtual environment: `python3 -m venv venv`
+- Activate the environment: `. ./venv/bin/activate`
+- Install dependencies: `pip3 install -r requirements.txt`
+- Run the script: `streamlit run main.py`
+
+## Code walkthrough
 
 ### Import Libraries
 
@@ -283,10 +342,4 @@ if st.button("Ask"):
 
 In this comprehensive guide, we have successfully demonstrated how to deploy an Autonomous Database on Google Cloud Platform (GCP) and integrate it with a Streamlit frontend app. By leveraging the power of Oracle Autonomous Database and Vertex AI, we created a robust and scalable solution for retrieving FAQs and generating responses to user queries.
 
-Throughout this tutorial, we covered various aspects of the deployment process, including setting up the infrastructure, configuring the database, and implementing the Streamlit app. We also explored the key components of the app, such as loading FAQs, retrieving relevant chunks, generating responses, and displaying references.
-
-By following this step-by-step guide, developers and data scientists can replicate this solution to build their own custom applications, harnessing the capabilities of Oracle Autonomous Database and Vertex AI. This integration enables organizations to unlock the full potential of their data, providing users with accurate and informative responses to their queries.
-
-As we continue to push the boundaries of innovation, it is essential to recognize the importance of seamless integrations between cutting-edge technologies like Oracle Autonomous Database, Vertex AI, and Streamlit. By embracing these advancements, businesses can drive growth, improve customer satisfaction, and stay ahead of the competition in today's fast-paced digital landscape.
-
-Ultimately, this project showcases the limitless possibilities that arise when combining powerful technologies with creative problem-solving. As we move forward, we look forward to exploring new frontiers in AI-driven development, empowering organizations to make informed decisions, and transforming the way we interact with data.
+By following this step-by-step guide, developers and data scientists can replicate this solution to build their own custom applications, harnessing the capabilities of Oracle Autonomous Database and Vertex AI.
