@@ -15,5 +15,6 @@ module "gcp-oci-adbs-quickstart" {
 
   network_name = "vpc-adbs-tutorial"
   cidr = "10.1.0.0/24"
+  deletion_protection = false
 }
 
