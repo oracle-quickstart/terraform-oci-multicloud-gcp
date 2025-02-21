@@ -3,7 +3,7 @@
 ## Provision Autonomous Database with Terraform
 <walkthrough-tutorial-duration duration="30"></walkthrough-tutorial-duration>
 
-[![gcp-oci-adbs-quickstart](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-oci-adbs-quickstart.png?raw=true)](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-oci-adbs-quickstart.png?raw=true)
+[![gcp-oci-adbs-quickstart](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/main/images/gcp-oci-adbs-quickstart.png?raw=true)](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/main/images/gcp-oci-adbs-quickstart.png?raw=true)
 
 In this tutorial, you will 
 
@@ -52,7 +52,7 @@ This tutorial has the following prerequisites:
 ## Authenication Google CLI & Terraform
 ### Cloud Shell <walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon>
 - When you firstly use `gcloud` or `terraform`, it prompts you to authorize like below:
-  ![Authorize Cloud Shell](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/images/gcp-authorize-cloud-shell.png?raw=true)
+  ![Authorize Cloud Shell](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/main/images/gcp-authorize-cloud-shell.png?raw=true)
 - Simply click `Authorize` when you see it (in the next step) to allow the tool using your credentials to make calls.
 - **You can proceed to next step if you're using Cloud Shell.** 
 
@@ -232,7 +232,7 @@ You've successfully complete the tutorial by querying the Autonomous Database fr
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
 ### What's next:
-- **Continue with [RAG Chatbot engine](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/adbs-ai/docs/tutorials/adbs-rag-chatbot/README_RAG.md)**: Use the Autonomous Database you've just provisioned as vector database for building a RAG Chatbot engine.
+- **Continue with [RAG Chatbot engine](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/main/docs/tutorials/adbs-rag-chatbot/README_RAG.md)**: Use the Autonomous Database you've just provisioned as vector database for building a RAG Chatbot engine.
 - **Don't forget to clean up**: Run the following command to cleanup the environment when you're done with all the related tutorials.
     ```bash
     terraform destroy
