@@ -50,24 +50,19 @@ This tutorial has the following prerequisites:
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
 ## Authenication Google CLI & Terraform
+Cloud Shell support integrated authenication, while a local shell requires explicit authenication setup.
 ### Cloud Shell <walkthrough-cloud-shell-icon	></walkthrough-cloud-shell-icon>
-- When you firstly use `gcloud` or `terraform`, it prompts you to authorize like below:
+- When you firstly use `gcloud` or `terraform`, it prompts you to authorize it like below:
   ![Authorize Cloud Shell](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp/blob/main/images/gcp-authorize-cloud-shell.png?raw=true)
 - Simply click `Authorize` when you see it (in the next step) to allow the tool using your credentials to make calls.
-- **You can proceed to next step if you're using Cloud Shell.** 
+- **If you're using Cloud Shell, you can proceed to next step and skip the below.** 
 
 <walkthrough-footnote></walkthrough-footnote>
 
-### Local Shell / Cloud Shell in Ephemeral Mode
-Use the following commands for authorizing CLI and Terraform, or follow the links for more details.
-- [**Authorizing Google Cloud CLI**](https://cloud.google.com/sdk/docs/authorizing#auth-google): 
-  ```sh
-  gcloud auth login
-  ```
-- [**Authorizing Terraform**](https://cloud.google.com/docs/terraform/authentication#local_dev_environment) 
-  ```sh
-  gcloud auth application-default login
-  ```
+### Local Shell 
+If you are using Local Shell (or Cloud Shell in Ephemeral Mode), use the following commands for authorizing CLI and Terraform. Please refer to the links for more details.
+- [**Authorizing Google Cloud CLI**](https://cloud.google.com/sdk/docs/authorizing#auth-google): `gcloud auth login`
+- [**Authorizing Terraform**](https://cloud.google.com/docs/terraform/authentication#local_dev_environment): `gcloud auth application-default login`
 
 <walkthrough-footnote>[OCI Multicloud Landing Zone for Google Cloud](https://github.com/oracle-quickstart/terraform-oci-multicloud-gcp)</walkthrough-footnote>
 
@@ -193,9 +188,6 @@ You've successfully provision an Autonomous Database of *Oracle Database@Google 
   export VM_ZONE=$(terraform output -json client_vm | jq -r '.zone')
   export VM_NAME=$(terraform output -json client_vm | jq -r '.name')
   export CONNSTR=$(terraform output -raw connstr)
-  ```
-- You can verify it by using the commmand below
-  ```sh
   echo VM_PROJECT = $VM_PROJECT
   echo VM_ZONE = $VM_ZONE
   echo VM_NAME = $VM_NAME
