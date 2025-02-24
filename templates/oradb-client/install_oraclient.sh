@@ -25,3 +25,4 @@ sudo unzip -o $TOOLS_ZIP -d $BASE_DIR
 echo "PATH=\"${PATH}:${BASE_DIR}/${INSTANT_CLIENT_DIR}\"" | sudo tee /etc/environment
 echo "$BASE_DIR/$INSTANT_CLIENT_DIR" | sudo tee /etc/ld.so.conf.d/oracle-instantclient.conf
 sudo ldconfig
+echo "Oracle Instant Client installation completed"

@@ -9,7 +9,7 @@ resource "google_compute_subnetwork" "this" {
 
 # Firewall Rules
 resource "google_compute_firewall" "ingress" {
-  name          = "${var.network_name}-ingress"
+  name          = "${var.network_name}-${local.subnet_name}-ingress"
   network       = var.network_name
   description   = "Allow SSH, HTTP, HTTPS, Autonomous DB, and RDP access"
   direction     = "INGRESS"
@@ -22,7 +22,7 @@ resource "google_compute_firewall" "ingress" {
 }
 
 resource "google_compute_firewall" "egress" {
-  name               = "${var.network_name}-egress"
+  name               = "${var.network_name}-${local.subnet_name}-egress"
   network            = var.network_name
   description        = "Allow SSH, HTTP, HTTPS, Autonomous DB, and RDP access"
   direction          = "EGRESS"
